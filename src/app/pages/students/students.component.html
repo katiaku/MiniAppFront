@@ -1,0 +1,38 @@
+<section class="container-fluid p-5">
+  <form>
+    <div class="mb-3">
+      <label for="student_id" class="form-label">Student ID</label>
+      <input #newStudentId type="number" class="form-control" id="student_id">
+    </div>
+    <div class="mb-3">
+      <label for="first_name" class="form-label">First Name</label>
+      <input #newFirsName type="text" class="form-control" id="first_name">
+    </div>
+    <div class="mb-3">
+      <label for="last_name" class="form-label">Last Name</label>
+      <input #newLastName type="text" class="form-control" id="last_name">
+    </div>
+    <div class="mb-3">
+      <label for="group_id" class="form-label">Group ID</label>
+      <input #newGroupId type="number" class="form-control" id="group_id">
+    </div>
+    <div class="mb-3">
+      <label for="enrollment_year" class="form-label">Enrollment Year</label>
+      <input #newEnrollmentYear type="number" class="form-control" id="enrollment_year">
+    </div>
+    <div class="d-flex justify-content-center p-3">
+      <button (click)="findStudent(newStudentId)" class="btn btn-primary mx-2">Find</button>
+      <button (click)="createStudent($event, newStudentId, newFirsName, newLastName, newGroupId, newEnrollmentYear)" class="btn btn-primary mx-2">Create</button>
+      <button (click)="updateStudent($event, newStudentId, newFirsName, newLastName, newGroupId, newEnrollmentYear)" class="btn btn-primary mx-2">Update</button>
+      <button (click)="deleteStudent($event, newStudentId, newFirsName, newLastName, newGroupId, newEnrollmentYear)" class="btn btn-primary mx-2">Delete</button>
+    </div>
+  </form>
+
+  <div *ngIf="apiService.students && apiService.students.length > 0">
+    <app-card
+    *ngFor="let student of apiService.students"
+    [studentPadre]="student"
+    >
+    </app-card>
+  </div>
+</section>
